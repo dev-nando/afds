@@ -1,14 +1,11 @@
-FROM python:3.8-slim
+# syntax=docker/dockerfile:1
 
-WORKDIR /var/notebooks
+FROM quay.io/jupyter/base-notebook:2024-03-19
 
-RUN pip install jupyterlab
-RUN pip install numpy==1.19.5
-RUN pip install cython
-RUN pip install pandas
-RUN pip install seaborn==0.9.0
-RUN pip install scipy
-RUN pip install plotly
-RUN pip install statsmodels
-
-COPY . ./
+RUN pip install --no-cache-dir numpy==1.26.4
+RUN pip install --no-cache-dir pandas==2.2.1
+RUN pip install --no-cache-dir matplotlib==3.8.3
+RUN pip install --no-cache-dir scikit-learn==1.4.1.post1
+RUN pip install --no-cache-dir seaborn==0.13.2
+RUN pip install --no-cache-dir plotly==5.20.0
+RUN pip install --no-cache-dir statsmodels==0.14.1

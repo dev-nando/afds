@@ -2,31 +2,17 @@
 
 Projeto pode ser executado localmente com a containerização do ambiente.
 
-**Aviso:** o código do notebook ainda não está funcionando corretamente, estou ajustando as versões das bibliotecas. E os volumes precisam ser criados.
-
 ## Comandos
 
-Para criar o a imagem do container:
+Optei por apenas utilizar o docker compose, então o container pode ser construido e colocado no ar apenas entrando no diretório que o projeto foi clonado e executando o comando abaixo:
 
 ```
-docker build -t jupyter .
+docker-compose up --build
 ```
 
-Para colocar o container no ar:
+Mas antes é necessários criar um arquivo chamado `.env` com no minimos as variáveis de ambiente abaixo:
 
-```
-docker run --rm -d -ti --name=jupyter -p 8888:8888 jupyter
-```
+ * PERSISTING_WORKING_DIR: <font size=2>diretório em que estarão todos os arquivos do projeto, que neste caso é o `work`</font>
+ * MY_TOKEN: <font size=2>qualquer token da sua escolha que será utilizado para acessar o jupyter pelo navegador</font>
 
-Para entrar no container:
-
-```
-docker exec -ti jupyter bash
-```
-Dentro dele utilize:
-
-```
-jupyter lab --ip='0.0.0.0' --no-browser --allow-root
-```
-
-Agora é só abrir no seu navegador o endereço http://localhost:8888 e inserir o token que foi logado no terminal onde o último comando foi executado.
+Criado o arquivo e executado o comando, é só abrir no seu navegador o endereço http://localhost:8889 e inserir o token que foi logado no terminal onde o último comando foi executado.

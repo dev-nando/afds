@@ -1,0 +1,13 @@
+services:
+  jupyter:
+    build: 
+      context: .
+    user: root
+    environment:
+      CHOWN_EXTRA: '${CONTAINER_WORKING_DIR}'
+      CHOWN_EXTRA_OPTS: '-R'
+    ports:
+      - '8889:8888'
+    volumes:
+      - '${PERSISTING_WORKING_DIR}:/home/jovyan/work'
+    command: start-notebook.py --NotebookApp.token='${MY_TOKEN}'
